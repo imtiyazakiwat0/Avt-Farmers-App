@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #8ba9f6;
+            color: white;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+          
+        .header img {
+            height: 4vh;
+            width: auto;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        .image-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-view img {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .navigation {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .navigation img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            /* Initially hidden */
+            width: 300px;
+            height: 100%;
+            background-color: #6f4695;
+            color: white;
+            transition: left 0.3s ease;
+            z-index: 2;
+        }
+
+        .navbar a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #4d2e5e;
+        }
+
+        .menu-icon {
+            display: none;
+            /* Hide by default on larger screens */
+            cursor: pointer;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .image-view img {
+                max-height: 50vh;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="back" onclick="goBack()">
+            <img src="arrow-left-long-solid.svg" alt="">
+        </div>
+        <h2>View Farmer Documents</h2>
+        <div class="menu" onclick="toggleNavbar()">
+            <img src="bars-solid.svg" alt="">
+        </div>
+    </div>
+    <div class="container">
+        <div class="image-view">
+            <img src="sample-document.jpg" alt="" class="doc-img">
+        </div>
+        <div class="navigation">
+            <img src="chevron-left-solid.svg" alt="">
+            <img src="chevron-right-solid.svg" alt="">
+        </div>
+    </div>
+
+    <div class="navbar" id="navbar">
+        <a href="index.html">Home</a>
+        <a href="farmer-documents.html">Farmer Documents</a>
+        <a href="farmers.html">Farmers</a>
+        <a href="view-documents.html">View Documents</a>
+        <a href="farmer-profile.html">View Profile</a>
+
+    </div>
+    <script>
+        const imageView = document.querySelector('.image-view img');
+        let zoomLevel = 1;
+
+        imageView.addEventListener('click', () => {
+            zoomLevel = zoomLevel === 1 ? 1.5 : 1;
+            imageView.style.transform = `scale(${zoomLevel})`;
+        });
+    
+        var navbar = document.getElementById("navbar");
+
+        function toggleNavbar() {
+            if (navbar.style.left === "-300px" || navbar.style.left === "") {
+                navbar.style.left = "0px";
+            } else {
+                navbar.style.left = "-300px";
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

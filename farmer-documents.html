@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #8ba9f6;
+            color: white;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        img {
+            height: 4vh;
+            width: auto;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+        }
+
+        button {
+            background-color: #6f4695;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4d2e5e;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            /* Initially hidden */
+            width: 300px;
+            height: 100%;
+            background-color: #6f4695;
+            color: white;
+            transition: left 0.3s ease;
+            z-index: 2;
+        }
+
+        .navbar a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #4d2e5e;
+        }
+
+        .menu-icon {
+            display: none;
+            /* Hide by default on larger screens */
+            cursor: pointer;
+            padding: 20px;
+        }
+</style>
+<body>
+    <div class="header">
+        <div class="back" onclick="goBack()">
+            <img src="arrow-left-long-solid.svg" alt="">
+        </div>
+        <h1>AVT-Farmer <p>Documents</p></h1>
+        <div class="menu"  onclick="toggleNavbar()">
+            <img src="bars-solid.svg" alt="">
+        </div>
+    </div>
+    <div class="container">
+        <div class="sowing-documents">
+            <button><h2>View sowing documents</h2></button>
+        </div>
+        <div class="bank/personal-documents">
+            <button><h2>View bank/personal documents</h2></button>
+        </div>
+        <div class="Agrichemical-Reciept">
+            <button><h2>View Agrichemical Reciept</h2></button>
+        </div>
+        <div class="Rough-sheet">
+            <button><h2>View Rough sheet</h2></button>
+        </div>
+        <div class="Payment-documents">
+            <button><h2>View Payment documents</h2></button>
+        </div>
+    </div>
+    <div class="navbar" id="navbar">
+        <a href="index.html">Home</a>
+        <a href="farmer-documents.html">Farmer Documents</a>
+        <a href="farmers.html">Farmers</a>
+        <a href="view-documents.html">View Documents</a>
+        <a href="farmer-profile.html">View Profile</a>
+
+    </div>
+    <script>
+
+        var navbar = document.getElementById("navbar");
+
+        function toggleNavbar() {
+            if (navbar.style.left === "-300px" || navbar.style.left === "") {
+                navbar.style.left = "0px";
+            } else {
+                navbar.style.left = "-300px";
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AVT-Natural Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #6f42c1;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .welcome-container {
+            text-align: center;
+            padding: 50px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            color: #6f42c1;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .upinput input {
+            margin-bottom: 20px;
+            padding: 12px;
+            width: calc(100% - 24px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #6f42c1;
+
+        }
+
+        .checkbox-container label {
+            font-size: 20px;
+            font-weight: bold;
+            color: #6f42c1;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .login-form button {
+            background-color: #6f42c1;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #563d7c;
+        }
+
+        .welcome-msg {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Login</h1>
+    </div>
+    <div class="welcome-container">
+        <div class="login-form">
+            <div class="upinput">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" placeholder="Enter your username" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" placeholder="Enter your password" required><br>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="farmer">
+                <label for="farmer">Farmer</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="fa">
+                <label for="fa">FA</label>
+            </div>
+            <button onclick="login()">Login</button>
+        </div>
+        <div class="welcome-msg" id="welcomeMsg"></div>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var isFarmer = document.getElementById("farmer").checked;
+            var isFA = document.getElementById("fa").checked;
+
+            if ((isFarmer || isFA) && username === "imtiyaz0" && password === "imt@123") {
+                var welcomeMsg = "Welcome, " + username + "!";
+                var role = isFarmer ? "farmer" : "fa";
+
+                // Save login information to localStorage
+                localStorage.setItem("loggedInAs", role);
+                localStorage.setItem("username", username);
+
+                if (isFarmer) {
+                    welcomeMsg += " You are logged in as a Farmer.";
+                    // Redirect to farmer profile page
+                    window.location.href = 'farmer-profile.html';
+                } else if (isFA) {
+                    welcomeMsg += " You are logged in as an FA.";
+                    // Redirect to FA profile page
+                    window.location.href = 'index.html';
+                }
+
+                document.getElementById("welcomeMsg").textContent = welcomeMsg;
+                document.querySelector('.login-form').style.display = 'none';
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
